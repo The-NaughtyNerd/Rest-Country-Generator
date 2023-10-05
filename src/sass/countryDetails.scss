@@ -1,0 +1,38 @@
+@use 'variables' as v;
+
+.detail {
+  &__name {
+    font-weight: 600;
+    font-size: 2.4rem;
+  }
+
+  &__info {
+    margin: 4rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 1.2rem 4rem;
+
+    @media (max-width: 80rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__row {
+    font-weight: 600;
+    font-size: 1.4rem;
+
+    span {
+      font-weight: 300;
+    }
+
+    .bor {
+      margin-left: 1rem;
+      background-color: v.$white;
+      padding: 0.5rem 1.2rem;
+
+      .dark & {
+        background: v.$darkElements;
+      }
+    }
+  }
+}

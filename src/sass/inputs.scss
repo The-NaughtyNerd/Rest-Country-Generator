@@ -1,0 +1,21 @@
+@use 'variables' as v;
+
+.input {
+  background-color: v.$white;
+  padding: 1rem 1.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  color: v.$lightInputText;
+
+  outline: none;
+
+  &:focus {
+    border: none;
+  }
+
+  .dark & {
+    background-color: v.$darkElements;
+    color: v.$white;
+  }
+}

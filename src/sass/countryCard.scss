@@ -1,0 +1,48 @@
+@use 'variables' as v;
+
+.country {
+  background-color: v.$white;
+  // width: 30rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  // margin: 0 3rem;
+
+  &__card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: 6rem 4rem;
+  }
+
+  .dark & {
+    background-color: v.$darkElements;
+  }
+
+  &__img {
+    width: 100%;
+    height: 17rem;
+    object-fit: cover;
+    background-color: #eee;
+    border-top-left-radius: 0.7rem;
+    border-top-right-radius: 0.7rem;
+  }
+
+  &__data {
+    padding: 2.5rem 3.75rem 3rem 3.75rem;
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  &__row {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+
+    span {
+      font-weight: 300;
+    }
+  }
+}
