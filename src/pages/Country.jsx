@@ -17,6 +17,13 @@ const Country = () => {
     setIsLoading(false);
   }, []);
 
+  // const fetchCountries = async () => {
+  //   const res = await fetch(`http://localhost:5000/countryAPI`);
+  //   const data = await res.json();
+  //   // console.log(data);
+  //   setCountry(data);
+  //   // console.log(country);
+  // };
   const fetchCountry = async () => {
     const res = await fetch(
       `https://restcountries.com/v3.1/alpha/${name.toUpperCase()}`

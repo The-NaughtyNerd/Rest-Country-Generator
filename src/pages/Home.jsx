@@ -67,7 +67,6 @@ const Home = () => {
             </div>
           ) : (
             <form className="w-full md:w-1/2 relative mb-10 md:mb-0">
-              {/* <div className=""> */}
               <input
                 required
                 type="search"
@@ -81,7 +80,6 @@ const Home = () => {
               <button className="absolute left-5 top-4">
                 <AiOutlineSearch className="  w-8 h-8 text-lightInput dark:text-white" />
               </button>
-              {/* </div> */}
             </form>
           )}
 
@@ -115,7 +113,6 @@ const Home = () => {
             filteredItems.map((item, idx) => (
               <div className="" key={idx}>
                 <Link to={`${item.cca3.toLowerCase()}`}>
-                  {/* <CountryCard key={idx} {...item} /> */}
                   <CountryCard
                     id={idx}
                     img={item.flags.png}
