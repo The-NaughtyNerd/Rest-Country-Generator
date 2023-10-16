@@ -3,43 +3,28 @@ import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 const Country = () => {
-  // const [isLoaded, setIsLoaded] = useState(false);
   const [country, setCountry] = useState([]);
   const { name } = useParams();
-  // console.log(name);
+  // const [filterCountry, setFilterCountry] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [filterCountry, setFilterCountry] = useState([]);
-
-  // useEffect(async () => {
-  //   setLoading(true);
-  //   const response = await fetch(`https://restcountries.com/v2/alpha/${name}`)
-  //   const json = await response.json();
-  //   !json.status && setData(json);
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchCountries();
-  // });
   useEffect(() => {
     fetchCountry();
-  });
+    setIsLoading(false);
+  }, []);
 
-  // const fetchCountries = async () => {
-  //   const res = await fetch(`http://localhost:5000/countryAPI`);
-  //   const data = await res.json();
-  //   // console.log(data);
-  //   setCountry(data);
-  //   // console.log(country);
-  // };
   const fetchCountry = async () => {
     const res = await fetch(
       `https://restcountries.com/v3.1/alpha/${name.toUpperCase()}`
     );
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     setCountry(data);
-    console.log(country);
+    // console.log(country);
   };
 
   // useEffect(() => {
@@ -64,59 +49,46 @@ const Country = () => {
           </Link>
         </div>
 
-        {country.map((item, idx) => (
-          <div key={idx} className="">
-            <CountryDetails
-              name={item.name.official}
-              img={item.flags.png}
-              native={
-                item.name.nativeName[Object.keys(item.name.nativeName)[0]]
-                  .common
-              }
-              population={item.population}
-              reg={item.region}
-              subreg={item.subregion}
-              capital={item.capital}
-              domain={item.tld}
-              curr={item.currencies[Object.keys(item.currencies)[0]].name}
-              lang={item.languages[Object.keys(item.languages)[0]]}
-              // lang={item.languages.map((item) => item)}
-              border={item.borders}
-            />
+        {isLoading ? (
+          <div className="flex flex-col md:flex-row py-[5em] gap-[6rem] md:gap-[12rem] items-center">
+            <div className="w-full md:w-1/2">
+              <Skeleton className="h-[40rem]" />
+            </div>
+
+            <div className="w-full md:w-1/2">
+              <Skeleton />
+
+              <div className="grid grid-cols-2 gap-[4rem] my-[4rem]">
+                <Skeleton count={4} className="mb-4" />
+                <Skeleton count={4} className="mb-4" />
+              </div>
+
+              <Skeleton />
+            </div>
           </div>
-        ))}
-
-        {/* <CountryDetails
-          name={country.name.common}
-          // img={country.flag}
-          // native={country.nativeName}
-          // population={country.population}
-          // reg={country.region}
-          // subreg={country.subregion}
-          // capital={country.capital}
-          // // domain={country.topLevelDomain[0]}
-          // curr={country.currencies.name}
-          // lang={country.languages}
-          // border={country.borders}
-        /> */}
-
-        {/* {filterCountry.map((item, idx) => [
-          <div key={idx} className="">
-            <CountryDetails
-              name={item.name}
-              img={item.flags.png}
-              native={item.nativeName}
-              population={item.population}
-              reg={item.region}
-              subreg={item.subregion}
-              capital={item.capital}
-              domain={item.topLevelDomain[0]}
-              curr={item.currencies[0].name}
-              lang={item.languages.map((item) => item.name)}
-              border={item.borders}
-            />
-          </div>,
-        ])} */}
+        ) : (
+          country.map((item, idx) => (
+            <div key={idx} className="">
+              <CountryDetails
+                name={item.name.official}
+                img={item.flags.png}
+                native={
+                  item.name.nativeName[Object.keys(item.name.nativeName)[0]]
+                    .common
+                }
+                population={item.population}
+                reg={item.region}
+                subreg={item.subregion}
+                capital={item.capital}
+                domain={item.tld}
+                curr={item.currencies[Object.keys(item.currencies)[0]].name}
+                lang={item.languages[Object.keys(item.languages)[0]]}
+                // lang={item.languages.map((item) => item)}
+                border={item.borders}
+              />
+            </div>
+          ))
+        )}
       </section>
     </>
   );
