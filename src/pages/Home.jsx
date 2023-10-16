@@ -19,7 +19,6 @@ const Home = () => {
 
   useEffect(() => {
     fetchCountries();
-    setIsLoading(false);
   }, []);
 
   // const fetchCountries = async () => {
@@ -33,8 +32,8 @@ const Home = () => {
     const res = await fetch(`https://restcountries.com/v3.1/all`);
     const data = await res.json();
     // console.log(data);
-    // setIsLoading(true);
     setCountries(data);
+    setIsLoading(false);
     // console.log(country);
   };
 
@@ -108,8 +107,9 @@ const Home = () => {
         </div>
 
         <div className=" country__card">
-          {isLoading && <CardSkeleton cards={8} />}
-          {filteredItems.length > 0 ? (
+          {isLoading ? (
+            <CardSkeleton cards={8} />
+          ) : filteredItems.length > 0 ? (
             filteredItems.map((item, idx) => (
               <div className="" key={idx}>
                 <Link to={`${item.cca3.toLowerCase()}`}>

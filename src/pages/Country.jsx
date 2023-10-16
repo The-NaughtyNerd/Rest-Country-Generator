@@ -14,8 +14,7 @@ const Country = () => {
 
   useEffect(() => {
     fetchCountry();
-    setIsLoading(false);
-  }, []);
+  });
 
   // const fetchCountries = async () => {
   //   const res = await fetch(`http://localhost:5000/countryAPI`);
@@ -31,6 +30,8 @@ const Country = () => {
     const data = await res.json();
     // console.log(data);
     setCountry(data);
+    setIsLoading(false);
+
     // console.log(country);
   };
 

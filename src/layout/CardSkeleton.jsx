@@ -7,7 +7,7 @@ const CardSkeleton = ({ cards }) => {
     .map((_, i) => (
       <div key={i} className="country">
         <div className="">
-          <Skeleton className="country__img bg-[#e2e2e2]" />
+          <Skeleton className="country__img" />
         </div>
         <div className="p-4">
           <Skeleton count={4} className="country__row" />
