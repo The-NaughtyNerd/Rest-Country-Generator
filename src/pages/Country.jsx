@@ -1,4 +1,4 @@
-import CountryDetails from '../components/countryDetails';
+import CountryDetails from '../components/CountryDetails';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
